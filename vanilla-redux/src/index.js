@@ -1,48 +1,35 @@
 import { createStore } from 'redux';
 
-const add = document.getElementById('add');
-const minus = document.getElementById('minus');
-const number = document.querySelector('span');
+const form = document.querySelector('form');
+const input = document.querySelector('input');
+const ul = document.querySelector('ul');
 
-// const countModifier = () => {
-//   return 'hello';
-// };
+const ADD_TODO = 'ADD_TODO';
+const DELETE_TODO = 'DELETE_TODO';
 
-const countModifier = (count = 0, action) => {
-  // state = 0으로 default
-  console.log(count, action);
-  if (action.type === 'ADD') {
-    return count + 1;
-  } else if (action.type === 'MINUS') {
-    return count - 1;
-  } else {
-    return count;
+const reducer = (state = [], action) => {
+  // console.log(action);
+  switch (action.type) {
+    case ADD_TODO:
+      return [...state, { text: action.text }];
+    // 배열에 push하는 등 직접 건들지 않는다. 새로운 배열 리턴
+    case DELETE_TODO:
+      return [];
+    default:
+      return state;
   }
 };
 
-const countStore = createStore(countModifier); // reducer 함수 필요!
+const store = createStore(reducer);
 
-// dispatch 수동처리
-countStore.dispatch({ type: 'ADD' }); // 1
-countStore.dispatch({ type: 'ADD' }); // 2
-countStore.dispatch({ type: 'ADD' }); // 3
-countStore.dispatch({ type: 'ADD' }); // 4
-countStore.dispatch({ type: 'MINUS' }); // 3
+store.subscribe(() => console.log(store.getState()));
+// 구독.. 왤케 와닿지를 않냐ㅠㅠ
 
-console.log('수동처리', countStore.getState()); // 3
+const onSubmit = (e) => {
+  e.preventDefault();
+  const toDo = input.value;
+  input.value = '';
+  store.dispatch({ type: ADD_TODO, text: toDo });
+};
 
-// 버튼으로 연결해보기
-// add.addEventListener('click', () => countStore.dispatch({ type: 'ADD' }));
-// minus.addEventListener('click', () => countStore.dispatch({ type: 'MINUS' }));
-
-const handleAdd = () => countStore.dispatch({ type: 'ADD' });
-const handleMinus = () => countStore.dispatch({ type: 'MINUS' });
-add.addEventListener('click', () => handleAdd());
-minus.addEventListener('click', () => handleMinus());
-
-// 그럼 이제 number위치에 innerText를 해줍시다.
-const onChange = () => {
-  number.innerText = countStore.getState();
-}
-
-countStore.subscribe(onChange); // 구독.. 구독......
+form.addEventListener('submit', onSubmit);
