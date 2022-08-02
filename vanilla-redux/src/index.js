@@ -8,10 +8,23 @@ const number = document.querySelector('span');
 //   return 'hello';
 // };
 
-const countModifier = (state = 0) => { // state = 0으로 default
-  // console.log(state);
-  return state;
+const countModifier = (count = 0, action) => {
+  // state = 0으로 default
+  if (action.type === 'ADD') {
+    return count + 1;
+  } else if (action.type === 'MINUS') {
+    return count - 1;
+  } else {
+    return count;
+  }
 };
 
 const countStore = createStore(countModifier); // reducer 함수 필요!
-console.log(countStore.getState());
+
+countStore.dispatch({ type: 'ADD' }); // 1
+countStore.dispatch({ type: 'ADD' }); // 2
+countStore.dispatch({ type: 'ADD' }); // 3
+countStore.dispatch({ type: 'ADD' }); // 4
+countStore.dispatch({ type: 'MINUS' }); // 3
+
+console.log(countStore.getState()); // 3
