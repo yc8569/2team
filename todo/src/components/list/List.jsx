@@ -2,6 +2,7 @@ import './List.css';
 import Todo from '../todo/Todo';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTodo, toggleStatusTodo } from '../../redux/modules/todos';
+import axios from 'axios';
 
 // const List = ({ todos, setTodos }) => {
 const List = () => {
@@ -18,6 +19,8 @@ const List = () => {
 
   const onRemove = (id) => {
     dispatch(deleteTodo(id));
+    // json 서버에서 삭제..
+    axios.delete(`http://localhost:3001/todoList/${id}`);
   };
 
   // const onEdit = (todoId) => {

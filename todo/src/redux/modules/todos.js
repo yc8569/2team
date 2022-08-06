@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // Action value
 const ADD_TODO = 'ADD_TODO';
 const GET_TODO_BY_ID = 'GET_TODO_BY_ID';
@@ -32,6 +34,17 @@ export const getTodoByID = (payload) => {
     payload,
   };
 };
+
+// axios 불러오기 확인용
+// axios를 통해서 get 요청을 하는 함수를 생성합니다.
+// 비동기처리를 해야하므로 async/await 구문을 통해서 처리합니다.
+const fetchTodos = async () => {
+  const { data } = await axios.get('http://localhost:3001/todoList');
+  console.log(data); // 서버로부터 fetching한 데이터를 useState의 state로 set 합니다.
+};
+
+fetchTodos(); // 이걸 리덕스 초기state로 넣으려면 어캄..?
+
 
 // initial state
 const initialState = {
