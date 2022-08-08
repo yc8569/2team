@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
-// import { getTodoByID } from '../redux/modules/todos';
+import { addComent } from '../redux/modules/todos';
 import { useState } from 'react';
 
 import Coment from '../coment/Coment';
@@ -37,10 +37,10 @@ const Detail = () => {
     event.preventDefault();
     const createdAt = new Date().getTime();
     
-    if (todo.title.trim() === '' || todo.content.trim() === '') return;
+    if (coment.title.trim() === '' || coment.content.trim() === '') return;
     // setTodos([...todos, { ...todo, id: num, createdAt }]);
-    dispatch(addTodo({ ...todo, id: dataId.current, createdAt }));
-    setTodo(initialState);
+    dispatch(addComent({ ...coment, id: dataId.current, createdAt }));
+    setcoment(initialState);
     dataId.current++;
   };
 
