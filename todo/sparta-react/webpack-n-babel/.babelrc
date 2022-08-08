@@ -1,5 +1,0 @@
-//.babelrc
-
-{
-    "presets":["@babel/presset-env","@babel/presset-react"]
-}
