@@ -1,10 +1,18 @@
 const ADD_COMENT = 'ADD_COMENT';
+const DELETE_COMENT = 'DELETE_COMENT';
 
 
 // Action Creator
 export const addComent = (payload) => {
   return {
     type: ADD_COMENT,
+    payload,
+  };
+};
+
+export const deleteComent = (payload) => {
+  return {
+    type: DELETE_COMENT,
     payload,
   };
 };
@@ -43,6 +51,12 @@ const coments = (state = initialState, action) => {
         ...state,
         comentList: [...state.comentList, action.payload],
       };
+
+    case DELETE_COMENT:
+      return{
+        ...state,
+        comentList: state.comentList.filter((coment) => coment.id !== action.payload),
+      }  
 
     default:
       return state;

@@ -1,11 +1,21 @@
 import './Coment.css';
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {deleteComent} from "../redux/modules/coments";
 
-const Coment = () => {
 
+const Coment = ({coment}) => {
+  const dispatch = useDispatch();
   const coments = useSelector((state) => state.coments.comentList);
-  console.log(coments)
-
+  
+  const comentDelete = (comentId) => {
+    
+    // if (window.confirm({number})) {
+      // onRemove(coment.id);
+      dispatch(deleteComent(comentId));
+    
+  };
+  
+  
   return (
     <div className='list-wrapper' >
      {coments.map((coment)=>{
@@ -13,6 +23,9 @@ const Coment = () => {
       <p>{coment.title}</p>
 
       <div>{coment.content}</div>
+      <button onClick={()=>{
+        comentDelete(coment.id);
+      }}>삭제</button>
             </div>
       )
      })}
