@@ -44,33 +44,20 @@ const List = () => {
         총 {todos.length}개의 항목이 있습니다. 🏳‍🌈 할 일을 열심히 완료해봅시다
         ❗❗
       </p>
-      <h2>Working..🔥</h2>
+      
       <div className='list-wrapper'>
         {todos.map((todo) =>
           !todo.isDone ? (
             <Todo
               key={todo.id}
               todo={todo}
-              onRemove={onRemove}
-              onEdit={onEdit}
+              // onRemove={onRemove}
+              // onEdit={onEdit}
             />
           ) : null
         )}
       </div>
-      <h2>Done..🌞</h2>
-      <div className='list-wrapper'>
-        {todos.map((todo) =>
-          todo.isDone ? (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              // setTodos={setTodos}
-              onRemove={onRemove}
-              onEdit={onEdit}
-            />
-          ) : null
-        )}
-      </div>
+    
     </div>
   );
 };

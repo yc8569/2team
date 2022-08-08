@@ -24,14 +24,14 @@ const Todo = ({ todo, onRemove, onEdit }) => {
             onClick={handleRemove}
           >
             삭제
-          </button>
+          </button>  
           <button className='button button-complete' onClick={() => onEdit(todo.id)}>
-            {todo.isDone ? '취소' : '완료'}
+            수정   
           </button>
-          <button className='button' onClick={() => navigate(`/detail/${todo.id}`)}>상세</button>
+          <button className='button' onClick={() => navigate(`/detail/${todo.id}`)}>참견해 볼텨?</button>
         </div>
       </div>
-    </> 
+    </> // 수정,삭제 버튼 은 상세페이지일때만
   );
 };
 

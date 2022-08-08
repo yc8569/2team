@@ -2,6 +2,9 @@ import Layout from '../components/layout/Layout';
 import Header from '../components/header/Header';
 import Form from '../components/form/Form';
 import List from '../components/list/List';
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Box from '../box/Box';
 
 function Home() {
   // const [todos, setTodos] = useState([
@@ -20,12 +23,19 @@ function Home() {
   //     created_date: 1659341238308,
   //   },
   // ]);
+   const navigate = useNavigate();
 
   return (
     <>
       <Layout>
         <Header />
-        <Form/>
+        <h1> 야 너도 개발자 할수있어</h1>
+        <Box title="너도 끄적여 볼텨?"
+        onClick={()=>{
+          navigate('form')
+        }}>너도 끄적여 볼텨?</Box>
+       
+        {/* <Form/> */}
         <List/>
       </Layout>
     </>

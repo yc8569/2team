@@ -2,7 +2,7 @@ import Layout from '../components/layout/Layout';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
 import { getTodoByID } from '../redux/modules/todos';
 
@@ -12,6 +12,9 @@ const Detail = () => {
   const dispatch = useDispatch();
   const todo = useSelector((state) => state.todos.todo);
   // console.log(todo);
+
+  const coment = 
+
 
   useEffect(() => {
     dispatch(getTodoByID(id));
@@ -26,6 +29,12 @@ const Detail = () => {
           <DetailTitle>{todo.title}</DetailTitle>
           <DetailContent>{todo.content}</DetailContent>
         </DetailBox>
+        <div>
+            <input />
+            <button onClick={()=>{
+              
+            }}>댓글남기기</button>
+          </div>
       </Layout>
     </>
   );

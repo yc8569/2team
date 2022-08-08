@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/modules/todos';
 
+
+let number = 3;
 const Form = () => {
   const initialState = {
     id: 0,
