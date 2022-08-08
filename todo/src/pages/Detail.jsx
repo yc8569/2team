@@ -4,8 +4,12 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
-import { getTodoByID } from '../redux/modules/todos';
+// import { getTodoByID } from '../redux/modules/todos';
+import { useState } from 'react';
 
+import Coment from '../coment/Coment';
+
+let number = 0;
 const Detail = () => {
   const { id } = useParams();
   // const navigate = useNavigate();
@@ -13,8 +17,32 @@ const Detail = () => {
   const todo = useSelector((state) => state.todos.todo);
   // console.log(todo);
 
-  const coment = 
+  const initialState = {
+    id: 0,
+    title: '',
+    content: '',
+    createdAt: null,
+  };
 
+  const [coment, setcoment] = useState(initialState);
+
+  const handleChangeState = (event) => {
+    setcoment({
+      ...coment,
+      [event.target.name]: event.target.value,
+    });
+    console.log(setcoment)
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const createdAt = new Date().getTime();
+    
+    if (todo.title.trim() === '' || todo.content.trim() === '') return;
+    // setTodos([...todos, { ...todo, id: num, createdAt }]);
+    dispatch(addTodo({ ...todo, id: dataId.current, createdAt }));
+    setTodo(initialState);
+    dataId.current++;
+  };
 
   useEffect(() => {
     dispatch(getTodoByID(id));
@@ -29,12 +57,36 @@ const Detail = () => {
           <DetailTitle>{todo.title}</DetailTitle>
           <DetailContent>{todo.content}</DetailContent>
         </DetailBox>
+        
         <div>
-            <input />
+          <form onSubmit={handleSubmit}>
+            <label >누구여
+              <input 
+                className='add-input'
+                name='title'
+                value={coment.title}
+                onChange={handleChangeState}
+                type='text'
+              />
+            </label>
+            
+            <label> 참견하기
+              <input 
+               className='add-input'
+               name='content'
+               value={coment.content}
+               onChange={handleChangeState}
+               type='text'
+              />
+            </label>
             <button onClick={()=>{
               
             }}>댓글남기기</button>
-          </div>
+         
+          </form>
+         </div>
+          <Coment></Coment>
+          
       </Layout>
     </>
   );

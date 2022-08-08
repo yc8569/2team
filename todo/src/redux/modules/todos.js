@@ -58,6 +58,7 @@ const initialState = {
     isDone: false,
     createdAt: null,
   },
+  
 };
 
 // 실제 처리되는 함수들
