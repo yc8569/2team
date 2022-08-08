@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
-import { addComent } from '../redux/modules/todos';
+import { addComent } from '../redux/modules/coments';
 import { useState } from 'react';
 
 import Coment from '../coment/Coment';
 
-let number = 0;
+// let number = 0;
 const Detail = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   // const navigate = useNavigate();
   const dispatch = useDispatch();
   const todo = useSelector((state) => state.todos.todo);
@@ -31,7 +31,7 @@ const Detail = () => {
       ...coment,
       [event.target.name]: event.target.value,
     });
-    console.log(setcoment)
+    console.log(coment)
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,14 +39,14 @@ const Detail = () => {
     
     if (coment.title.trim() === '' || coment.content.trim() === '') return;
     // setTodos([...todos, { ...todo, id: num, createdAt }]);
-    dispatch(addComent({ ...coment, id: dataId.current, createdAt }));
+    dispatch(addComent({ ...coment,  createdAt }));
     setcoment(initialState);
-    dataId.current++;
+   
   };
 
-  useEffect(() => {
-    dispatch(getTodoByID(id));
-  }, [dispatch, id]);
+  // useEffect(() => {
+  //   dispatch(getTodoByID(id));
+  // }, [dispatch, id]);
 
   return (
     <>

@@ -7,7 +7,7 @@ import { deleteTodo, toggleStatusTodo } from '../../redux/modules/todos';
 const List = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.todoList);
-  console.log(todos);
+  
 
   // const onRemove = (todoId) => {
   //   const newTodos = todos.filter((todo) => {
