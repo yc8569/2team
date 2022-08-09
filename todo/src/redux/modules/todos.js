@@ -43,13 +43,13 @@ const initialState = {
       isDone: false,
       createdAt: 1659311283308,
     },
-    {
-      id: 2,
-      title: 'JS 기초개념',
-      content: '개념 노트 정리하기',
-      isDone: true,
-      createdAt: 1659341238308,
-    },
+    // {
+    //   id: 2,
+    //   title: 'JS 기초개념',
+    //   content: '개념 노트 정리하기',
+    //   isDone: true,
+    //   createdAt: 1659341238308,
+    // },
   ],
   todo: {
     id: '0',

@@ -23,12 +23,14 @@ export const deleteComent = (payload) => {
 const initialState = {
   comentList: [
     {
+      todoId:1,
       id: 1,
       title: '작성자',
       content: '댓글입니당',
       createdAt: 1659311283308,
     },
     {
+      todoId:1,
       id: 2,
       title: '작성자라니까2',
       content: '개념 노트 정리하기',
@@ -36,6 +38,7 @@ const initialState = {
     },
   ],
   coment: {
+    todoId:"0",
     id: '0',
     title: '',
     content: '',

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/modules/todos';
 
 
-let number = 3;
+let number =2;
 const Form = () => {
   const initialState = {
     id: 0,
@@ -31,9 +31,10 @@ const Form = () => {
     console.log(createdAt);
     if (todo.title.trim() === '' || todo.content.trim() === '') return;
     // setTodos([...todos, { ...todo, id: num, createdAt }]);
-    dispatch(addTodo({ ...todo, id: dataId.current, createdAt }));
+    dispatch(addTodo({ ...todo, id: number, createdAt }));
     setTodo(initialState);
-    dataId.current++;
+    // dataId.current++;
+    number = number +1;
   };
 
   return (

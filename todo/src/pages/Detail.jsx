@@ -9,15 +9,17 @@ import { useState } from 'react';
 
 import Coment from '../coment/Coment';
 
-// let number = 0;
+let number = 3;
 const Detail = () => {
-  // const { id } = useParams();
+  const { id } = useParams();
   // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const todo = useSelector((state) => state.todos.todo);
-  // console.log(todo);
+  const todos = useSelector((state) => state.todos.todoList);
 
+  const new_todo = todos.filter((todo)=> todo.id == id)[0]
+  // console.log(new_todo,{id});
   const initialState = {
+    todoId:0,
     id: 0,
     title: '',
     content: '',
@@ -27,21 +29,31 @@ const Detail = () => {
   const [coment, setcoment] = useState(initialState);
 
   const handleChangeState = (event) => {
+    // const todo_id = 
+    
     setcoment({
       ...coment,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value, 
     });
-    console.log(coment)
+    // console.log(coment)
+    // console.log(event.target.name)
   };
+
+  let todo_id = new_todo.id
+  // let dataId = useRef(3);
   const handleSubmit = (event) => {
     event.preventDefault();
     const createdAt = new Date().getTime();
     
     if (coment.title.trim() === '' || coment.content.trim() === '') return;
     // setTodos([...todos, { ...todo, id: num, createdAt }]);
-    dispatch(addComent({ ...coment,  createdAt }));
+    dispatch(addComent({ ...coment, 
+      id: number, createdAt ,todoId: todo_id,
+    }));
     setcoment(initialState);
-   
+    // dataId.current++;
+    number = number +1;
+    
   };
 
   // useEffect(() => {
@@ -53,9 +65,9 @@ const Detail = () => {
       <Layout>
         <Header />
         <DetailBox>
-          <DetailNo>No. {todo.id} 🎂</DetailNo>
-          <DetailTitle>{todo.title}</DetailTitle>
-          <DetailContent>{todo.content}</DetailContent>
+          <DetailNo>No. {new_todo.id} 🎂</DetailNo>
+          <DetailTitle>{new_todo.title}</DetailTitle>
+          <DetailContent>{new_todo.content}</DetailContent>
         </DetailBox>
         
         <div>
@@ -85,7 +97,7 @@ const Detail = () => {
          
           </form>
          </div>
-          <Coment></Coment>
+          <Coment id={todo_id}></Coment>
           
       </Layout>
     </>
