@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
-import { addComent } from '../redux/modules/coments';
+import { addComment } from '../redux/modules/comments';
 import { useState } from 'react';
 
-import Coment from '../coment/Coment';
+import Comment from '../comment/Comment';
 
 let number = 3;
 const Detail = () => {
@@ -26,16 +26,16 @@ const Detail = () => {
     createdAt: null,
   };
 
-  const [coment, setcoment] = useState(initialState);
+  const [comment, setcomment] = useState(initialState);
 
   const handleChangeState = (event) => {
     // const todo_id = 
     
-    setcoment({
-      ...coment,
+    setcomment({
+      ...comment,
       [event.target.name]: event.target.value, 
     });
-    // console.log(coment)
+   
     // console.log(event.target.name)
   };
 
@@ -45,14 +45,14 @@ const Detail = () => {
     event.preventDefault();
     const createdAt = new Date().getTime();
     
-    if (coment.title.trim() === '' || coment.content.trim() === '') {
+    if (comment.title.trim() === '' || comment.content.trim() === '') {
       return alert("모든 항목을 입력해주세요.");
     }
 
-    dispatch(addComent({ ...coment, 
+    dispatch(addComment({ ...comment, 
       id: number, createdAt ,todoId: todo_id,
     }));
-    setcoment(initialState);
+    setcomment(initialState);
     // dataId.current++;
     number = number +1;
     
@@ -78,7 +78,7 @@ const Detail = () => {
               <input 
                 className='add-input'
                 name='title'
-                value={coment.title}
+                value={comment.title}
                 onChange={handleChangeState}
                 type='text'
               />
@@ -88,7 +88,7 @@ const Detail = () => {
               <input 
                className='add-input'
                name='content'
-               value={coment.content}
+               value={comment.content}
                onChange={handleChangeState}
                type='text'
               />
@@ -99,7 +99,7 @@ const Detail = () => {
          
           </form>
          </div>
-          <Coment id={todo_id}></Coment>
+          <Comment id={todo_id}></Comment>
           
       </Layout>
     </>

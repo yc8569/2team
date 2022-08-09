@@ -1,18 +1,18 @@
-const ADD_COMENT = 'ADD_COMENT';
-const DELETE_COMENT = 'DELETE_COMENT';
+const ADD_COMMENT = 'ADD_COMMENT';
+const DELETE_COMMENT = 'DELETE_COMMENT';
 
 
 // Action Creator
-export const addComent = (payload) => {
+export const addComment = (payload) => {
   return {
-    type: ADD_COMENT,
+    type: ADD_COMMENT,
     payload,
   };
 };
 
-export const deleteComent = (payload) => {
+export const deleteComment = (payload) => {
   return {
-    type: DELETE_COMENT,
+    type: DELETE_COMMENT,
     payload,
   };
 };
@@ -21,7 +21,7 @@ export const deleteComent = (payload) => {
 
 // initial state
 const initialState = {
-  comentList: [
+  commentList: [
     {
       todoId:1,
       id: 1,
@@ -37,7 +37,7 @@ const initialState = {
       createdAt: 1659341238308,
     },
   ],
-  coment: {
+  comment: {
     todoId:"0",
     id: '0',
     title: '',
@@ -47,18 +47,18 @@ const initialState = {
 };
 
 // 실제 처리되는 함수들
-const coments = (state = initialState, action) => {
+const comments = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_COMENT:
+    case ADD_COMMENT:
       return {
         ...state,
-        comentList: [...state.comentList, action.payload],
+        commentList: [...state.commentList, action.payload],
       };
 
-    case DELETE_COMENT:
+    case DELETE_COMMENT:
       return{
         ...state,
-        comentList: state.comentList.filter((coment) => coment.id !== action.payload),
+        commentList: state.commentList.filter((comment) => comment.id !== action.payload),
       }  
 
     default:
@@ -66,4 +66,4 @@ const coments = (state = initialState, action) => {
   }
 };
 
-export default coments;
+export default comments;
