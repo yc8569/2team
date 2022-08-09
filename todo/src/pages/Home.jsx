@@ -4,7 +4,7 @@ import Form from '../components/form/Form';
 import List from '../components/list/List';
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Box from '../box/Box';
+
 
 function Home() {
   // const [todos, setTodos] = useState([
@@ -30,10 +30,10 @@ function Home() {
       <Layout>
         <Header />
         <h1> 야 너도 개발자 할수있어</h1>
-        <Box title="너도 끄적여 볼텨?"
+        <div title="너도 끄적여 볼텨?"
         onClick={()=>{
           navigate('form')
-        }}>너도 끄적여 볼텨?</Box>
+        }}>너도 끄적여 볼텨?</div>
        
         {/* <Form/> */}
         <List/>

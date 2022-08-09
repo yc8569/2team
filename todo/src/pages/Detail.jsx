@@ -45,8 +45,10 @@ const Detail = () => {
     event.preventDefault();
     const createdAt = new Date().getTime();
     
-    if (coment.title.trim() === '' || coment.content.trim() === '') return;
-    // setTodos([...todos, { ...todo, id: num, createdAt }]);
+    if (coment.title.trim() === '' || coment.content.trim() === '') {
+      return alert("모든 항목을 입력해주세요.");
+    }
+
     dispatch(addComent({ ...coment, 
       id: number, createdAt ,todoId: todo_id,
     }));

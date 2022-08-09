@@ -21,12 +21,14 @@ const Coment = (props) => {
      {coments.map((coment)=>{
       if(coment.todoId === props.id){
         return (<div key={coment.id}>
-          <p>{coment.title}</p>
-    
-          <div>{coment.content}</div>
-          <button onClick={()=>{
-            comentDelete(coment.id);
-          }}>삭제</button>
+          <div className='coment-box'>
+              <p>{coment.title}</p>
+              <div>{coment.content}</div>
+              <button onClick={()=>{
+               comentDelete(coment.id);
+               }}>삭제</button>
+          </div>
+         
                 </div>
           )
       }
